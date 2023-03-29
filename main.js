@@ -43,7 +43,6 @@ const quotes = [
 
 const randomSelection = () => {
   let quotesLength = quotes.length - 1; // resto uno para que se iguale el length al index del objeto "quotes"
-  console.log(quotesLength);
   let randomIndexQuote = Math.round(Math.random() * quotesLength);
   let quote = quotes[randomIndexQuote];
   return quote;
