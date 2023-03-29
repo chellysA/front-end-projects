@@ -40,31 +40,33 @@ const quotes = [
     bg: "url('./assets/fondo6.jpg')",
   },
 ];
-const randomSelection = () => {
-  let claves = Object.keys(quotes);
-  claves = claves.length - 1;
 
-  let quote = Math.round(Math.random() * claves);
-  console.log(quote);
-  let randomQuote = quotes[quote];
-  return randomQuote;
+const randomSelection = () => {
+  let quotesLength = quotes.length - 1; // resto uno para que se iguale el length al index del objeto "quotes"
+  console.log(quotesLength);
+  let randomIndexQuote = Math.round(Math.random() * quotesLength);
+  let quote = quotes[randomIndexQuote];
+  return quote;
 };
-const addFirstQuote = () => {
-  const firstQuote = document.getElementById("text");
-  let quote = randomSelection();
-  firstQuote.innerHTML = quote.quote;
+
+const changeQuote = () => {
+  let randomQuote = randomSelection();
+  const quoteContainer = document.getElementById("text");
   const author = document.getElementById("author");
-  author.innerHTML = quote.cita;
-  let imagen = document.getElementById("container-fluid");
-  imagen.style.backgroundImage = quote.bg;
+  const imagen = document.getElementById("container-fluid");
+
+  quoteContainer.innerHTML = randomQuote.quote;
+  author.innerHTML = randomQuote.cita;
+  imagen.style.backgroundImage = randomQuote.bg;
 };
-const newQuoteButton = () => {
-  const newQuote = document.getElementById("new-quote");
-  newQuote.addEventListener("click", addFirstQuote);
+
+const addEventListenerToButton = () => {
+  const newQuoteButton = document.getElementById("new-quote");
+  newQuoteButton.addEventListener("click", changeQuote);
 };
 
 window.addEventListener("load", () => {
   randomSelection();
-  addFirstQuote();
-  newQuoteButton();
+  changeQuote();
+  addEventListenerToButton();
 });
